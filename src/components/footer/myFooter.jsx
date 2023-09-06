@@ -1,0 +1,31 @@
+import React, {Component} from "react";
+import { Container, Row } from "react-bootstrap";
+import { footerLinks } from "../../data/myFooterLinks";
+import { nanoid } from "nanoid";
+import './myFooter.css'
+
+class MyFooter extends Component {
+    render(){
+        return(
+            <>
+            <Container>
+                <Row>
+                    <ul>
+                        {
+                            footerLinks.map((link) => {
+                            return <li key={nanoid()}>
+                                <a  href={`${link.href}`}>
+                                {link.name}
+                                </a>
+                            </li>
+                            })
+                        }
+                    </ul>
+                </Row>
+            </Container>
+            </>
+        )
+    }
+}
+
+export default MyFooter;
