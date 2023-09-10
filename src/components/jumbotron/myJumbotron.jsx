@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import '../jumbotron/myJumbotron.css'
 
 
 export default class MyJumbotron extends Component {
@@ -7,7 +8,13 @@ export default class MyJumbotron extends Component {
     return (
       <>
         <Container>
-            <img className='img-fluid' src="https://picsum.photos/2000/300" alt="window" />
+            <Row>
+              <Col>
+                <div className='jumbotron'>
+                <h1>Epibooks</h1>
+                </div>
+              </Col>
+            </Row>
         </Container>
       </>
     )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-
+import fantasyBooks from "../../data/books/fantasy.json"
+import {nanoid} from 'nanoid'
 
 class MyLatestRelease extends Component {
     render() {
@@ -8,19 +9,25 @@ class MyLatestRelease extends Component {
             
                 <Container>
                     <Row>
-                        <Col>
-                        <Card>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
-                                    <Card.Text>
-                                        Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                       
+                            {
+                                fantasyBooks.map((book) => {
+                                    return <Col xs={3} key={nanoid()}>  
+                                    <Card>
+                                    <Card.Img src={book.img} variant="top" />
+                                    <Card.Body>
+                                        <Card.Title>{book.title}</Card.Title>
+                                        <Card.Text>
+                                           ${book.price}
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                    </Card>
+                                    </Col>
+
+                                })
+                            }
+                           
                     </Row>
                 </Container>
             
