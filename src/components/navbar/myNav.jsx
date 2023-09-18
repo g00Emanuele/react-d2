@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,13 +6,12 @@ import { navLinks } from '../../data/myNavLinks';
 import { nanoid } from 'nanoid';
 
 
-class MyNav extends Component {
-    render() {
+const MyNav = ({title}) => {
         return (
             <>
                 <Navbar expand="lg" className='bg-body-tertiary'>
                     <Container>
-                        <Navbar.Brand href="#">{this.props.title}</Navbar.Brand>
+                        <Navbar.Brand href="#">{title}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
@@ -27,7 +26,6 @@ class MyNav extends Component {
                 </Navbar>
             </>
         )
-    }
 }
 
 export default MyNav

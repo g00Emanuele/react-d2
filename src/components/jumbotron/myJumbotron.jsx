@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../jumbotron/myJumbotron.css'
 
-
-export default class MyJumbotron extends Component {
-  render() {
-    return (
-      <>
+const MyJumbotron = () => {
+  return (
+    <>
         <Container>
             <Row>
               <Col>
@@ -17,6 +15,8 @@ export default class MyJumbotron extends Component {
             </Row>
         </Container>
       </>
-    )
-  }
+  )
 }
+
+
+export default MyJumbotron;
