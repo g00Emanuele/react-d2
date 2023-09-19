@@ -1,19 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, } from 'react-bootstrap'
-import fantasy from '../../data/books/fantasy.json'
 import BookCard from '../bookCard/bookCard'
 
 const MyLatestRelease = () => {
-
+   
+    const [books, setBooks] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
     const [searchBar, setSearchBar] = useState('')
-    const [filteredBooks, setFilteredBooks] = useState(fantasy)
+    const [filteredBooks, setFilteredBooks] = useState([])
+
+    const fetchBooks = async () => {
+        try {
+            setIsLoading(true)
+            const response = await fetch('https://epibooks.onrender.com/')
+            const data = await response.json()
+            setBooks(data)
+            setFilteredBooks(data)
+            setIsLoading(false)
+        } catch (error) {
+            if (error) setError(error)
+        }
+    }
 
     const searchBooks = () => {
-        const arrayFilteredBooks = fantasy.filter((book) => (book.title.toLowerCase().includes(searchBar.toLowerCase().trim())))
+        const arrayFilteredBooks = books.filter((book) => (book.title.toLowerCase().includes(searchBar.toLowerCase().trim())))
         setFilteredBooks(arrayFilteredBooks)
     }
 
-    console.log(filteredBooks)
+    useEffect(() => {
+        fetchBooks()
+    }, [])
 
     return (
         <>
@@ -27,14 +44,14 @@ const MyLatestRelease = () => {
                     <button onClick={searchBooks}>Cerca</button>
                 </div>
                 <Row>
-                    {
-                    filteredBooks.map((book) => {
-                        return <BookCard
-                            img={book.img}
-                            title={book.title}
-                            price={book.price}
-                        />
-                    })
+                    {   !error && !isLoading &&
+                        filteredBooks.map((book) => {
+                            return <BookCard
+                                img={book.img}
+                                title={book.title}
+                                price={book.price}
+                            />
+                        })
                     }
                 </Row>
             </Container>

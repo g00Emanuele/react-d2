@@ -12,11 +12,6 @@ const App = () => {
       <MyNav title='MyNav' />
       <MyJumbotron />
       <MyLatestRelease />
-      
-      
-
-
-
 
       <MyFooter />
     </>
