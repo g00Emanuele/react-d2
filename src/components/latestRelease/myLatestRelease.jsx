@@ -45,7 +45,7 @@ const MyLatestRelease = () => {
                 </div>
                 <Row>
                     {   !error && !isLoading &&
-                        filteredBooks.map((book) => {
+                        filteredBooks.slice(0, 8).map((book) => {
                             return <BookCard
                                 img={book.img}
                                 title={book.title}
