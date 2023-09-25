@@ -11,10 +11,10 @@ export default function AddComment() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const addComment = async () => {
+  const addComment = async () => {  
     try {
       setIsLoading(true)
-      const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${isSelected}`,{
+      const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments`,{
         method: 'POST',
         body: JSON.stringify({
           rate: myRate,

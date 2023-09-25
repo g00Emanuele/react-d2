@@ -14,6 +14,7 @@ export default function BookContext({children}) {
             setIsLoading(true)
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${isSelected}`, {
                 headers: {
+                    'Content-Type': 'application/json',
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGUzYmM0YTFmMTc1YzAwMTRjNTU5MTQiLCJpYXQiOjE2OTU2MjM4NjEsImV4cCI6MTY5NjgzMzQ2MX0.Ctp7yKd6QUqD4R_OFnAaTQyc2x7i1vVpvkoLcTaCNUU"
                 }
             })
