@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import BookCard from '../bookCard/bookCard'
 
 const MyLatestRelease = () => {
-   
+
     const [books, setBooks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -33,7 +33,8 @@ const MyLatestRelease = () => {
     }, [])
 
     return (
-        <>
+        
+        <Col sm={8}>
             <Container>
                 <div>
                     <input type="text"
@@ -44,18 +45,22 @@ const MyLatestRelease = () => {
                     <button onClick={searchBooks}>Cerca</button>
                 </div>
                 <Row>
-                    {   !error && !isLoading &&
-                        filteredBooks.slice(0, 8).map((book) => {
+                    {error && <h1>Errore</h1>}
+                    {!error && isLoading && <h1>sta caricando...</h1>}
+                    {!error && !isLoading &&
+                        filteredBooks.slice(0, 32).map((book) => {
                             return <BookCard
                                 img={book.img}
                                 title={book.title}
                                 price={book.price}
+                                asin={book.asin}
                             />
                         })
                     }
                 </Row>
             </Container>
-        </>
+            </Col>
+        
     )
 }
 
