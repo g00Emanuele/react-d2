@@ -1,17 +1,18 @@
-import MyNav from "./components/navbar/myNav";
-import MyFooter from "./components/footer/myFooter";
-import MyJumbotron from "./components/jumbotron/myJumbotron";
-import Main from "./components/main/Main";
-import Theme from "./contexts/Theme";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import BookDetails from "./pages/BookDetails";
 
 const App = () => {
   return (
-    <Theme>
-      <MyNav title="Epibooks" />
-      <MyJumbotron />
-      <Main />
-      <MyFooter />
-    </Theme>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/books/:bookId" element={<BookDetails/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
+  
   );
 };
 

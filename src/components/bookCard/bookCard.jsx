@@ -3,6 +3,7 @@ import { Card, Col, Button } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import "./bookcard.css";
 import { PostProvider } from "../../contexts/BookContext";
+import { Link } from "react-router-dom";
 
 export default function BookCard({ img, title, price, asin }) {
   const { isSelected, setIsSelected } = useContext(PostProvider);
@@ -19,7 +20,10 @@ export default function BookCard({ img, title, price, asin }) {
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>${price}</Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Link to={`books/${asin}`}>
+            <Button variant="primary">Dettagli libro</Button>
+
+            </Link>
           </Card.Body>
         </Card>
       </Col>
