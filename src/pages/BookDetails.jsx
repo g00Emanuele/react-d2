@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-
 import BookDetailsCard from "../components/bookDetailsCard/BookDetailsCard";
 
-export default function BookDetails({ img, title, price }) {
+export default function BookDetails() {
   const { bookId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -14,8 +13,8 @@ export default function BookDetails({ img, title, price }) {
       setIsLoading(true);
       const response = await fetch(`https://epibooks.onrender.com/${bookId}`);
       const data = await response.json();
-      setBookDetails(data);
-      console.log(data);
+      setBookDetails(data[0]);
+      console.log(bookDetails);
       setIsLoading(false);
     } catch (error) {
       if (error) setError(error);
@@ -24,7 +23,7 @@ export default function BookDetails({ img, title, price }) {
 
   useEffect(() => {
     getBookDetails();
-  }, []);
+  }, [bookId]);
 
   return (
     <>
@@ -32,12 +31,12 @@ export default function BookDetails({ img, title, price }) {
       {!error && isLoading && <h1>Caricamento in corso...</h1>}
       {!error && !isLoading && (
         <BookDetailsCard
-          img={bookDetails[0].img}
-          title={bookDetails[0].title}
-          price={bookDetails[0].price}
-          asin={bookDetails[0].asin}
+          img={bookDetails.img}
+          title={bookDetails.title}
+          price={bookDetails.price}
+          asin={bookDetails.asin}
         />
       )}
     </>
-  );    
+  );
 }
