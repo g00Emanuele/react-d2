@@ -18,7 +18,7 @@ export default function CommentArea() {
         <CommentList
           commenti={comments.map((comment) => {
             return (
-              <SingleComment commento={comment.comment} rate={comment.rate} author={comment.author}/>
+              <SingleComment commento={comment.comment} rate={comment.rate} author={comment.author} id={comment._id}/>
             );
           })}
         />
